@@ -4,12 +4,19 @@ import { Link, Outlet } from 'react-router-dom';
 function App() {
   return (
     <>
-      <div className="navBar">
-        <nav>
-          <Link to="/">Home</Link>
-          <Link to="/cart">View Cart</Link>
-        </nav>
-      </div>
+      <nav>
+        <ul>
+          <li>
+            <Link to="/">Home</Link>
+          </li>
+          <li>
+            <Link to="/shop">Shop</Link>
+          </li>
+          <li>
+            <Link to="/cart">View Cart</Link>
+          </li>
+        </ul>
+      </nav>
       <div id='content'>
         <Outlet />
       </div>
