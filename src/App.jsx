@@ -1,7 +1,19 @@
 import './App.css';
 import { Link, Outlet } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+
+const fakeStoreProductsApiUrl = 'https://fakestoreapi.com/products/';
 
 function App() {
+  const [items, setItems] = useState([]);
+  
+  useEffect(() => {
+    fetch(fakeStoreProductsApiUrl)
+      .then(response => response.json())
+      .then(list => setItems(list))
+      .catch(error => console.error(error))
+  })
+
   return (
     <>
       <nav>
@@ -18,7 +30,7 @@ function App() {
         </ul>
       </nav>
       <div id='content'>
-        <Outlet />
+        <Outlet context={items}/>
       </div>
     </>
   )
