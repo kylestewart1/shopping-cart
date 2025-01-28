@@ -6,6 +6,7 @@ const fakeStoreProductsApiUrl = 'https://fakestoreapi.com/products/';
 
 function App() {
   const [items, setItems] = useState([]);
+  const [cart, setCart] = useState([]);
   
   useEffect(() => {
     fetch(fakeStoreProductsApiUrl)
@@ -13,6 +14,27 @@ function App() {
       .then(list => setItems(list))
       .catch(error => console.error(error))
   })
+
+  function addToCart(itemID) {
+    const item = cart.find(itm => itm.id === itemID);
+    if (item !== undefined) {
+      setCart([
+        ...cart.filter(itm => itm.id !== itemID),
+        {
+          id: itemID,
+          quantity: item.quantity + 1
+        }
+      ])
+    } else {
+      setCart([
+        ...cart,
+        {
+          id: itemID,
+          quantity: 1
+        }
+      ])
+    }
+  }
 
   return (
     <>
@@ -30,7 +52,11 @@ function App() {
         </ul>
       </nav>
       <div id='content'>
-        <Outlet context={items}/>
+        <Outlet context={{
+          items: items,
+          cart: cart,
+          addToCart: addToCart
+          }}/>
       </div>
     </>
   )

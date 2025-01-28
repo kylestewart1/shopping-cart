@@ -4,11 +4,11 @@ import "./Shop.css";
 
 
 export default function Shop() {
-  const items = useOutletContext();
+  const {items, addToCart} = useOutletContext();
 
   const itemCards = items.map(item => {
     return (
-      <Item key={item.id} data={item} />
+      <Item key={item.id} data={item} addToCartHandler={addToCart}/>
     )
   })
 
