@@ -11,7 +11,21 @@ nav > ul {
   gap: 50px;
 }
 
+nav > ul > li {
+  padding: 10px;
+  display: flex;
+  align-items: center;
+}
+
 nav > ul > li > a {
   font-size: larger;
-  
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+
+
+.cart-button > a > img {
+  height: 30px;
 }

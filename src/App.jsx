@@ -1,6 +1,7 @@
 import './App.css';
 import { Link, Outlet } from 'react-router-dom';
 import { useState, useEffect } from 'react';
+import cartIcon from "./assets/cart-icon.png";
 
 const fakeStoreProductsApiUrl = 'https://fakestoreapi.com/products/';
 
@@ -14,6 +15,10 @@ function App() {
       .then(list => setItems(list))
       .catch(error => console.error(error))
   })
+
+  function cartTotalItems() {
+    return cart.reduce((count, item) => count + item.quantity, 0);
+  }
 
   function addToCart(itemID) {
     const item = cart.find(itm => itm.id === itemID);
@@ -46,8 +51,8 @@ function App() {
           <li>
             <Link to="/shop">Shop</Link>
           </li>
-          <li>
-            <Link to="/cart">View Cart</Link>
+          <li className='cart-button'>
+            <Link to="/cart"><img src={cartIcon} /> Cart({cartTotalItems()})</Link>
           </li>
         </ul>
       </nav>
