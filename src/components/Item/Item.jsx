@@ -1,13 +1,22 @@
+import { useState } from "react";
 import "./Item.css";
 import PropTypes from "prop-types";
 
 function Item({ data, addToCartHandler }) {
+  const [quantityToAdd, setQuantityToAdd] = useState(1);
+  
   return (
     <div className="item">
       <img src={data.image} />
       <h3>{data.title}</h3>
       <p>{data.description}</p>
-      <button onClick={() => addToCartHandler(data.id)}>Add to Cart</button>
+      <form>
+        <label>
+          Quantity:    
+          <input type="number" value={quantityToAdd} onChange={(e) => setQuantityToAdd(Number(e.target.value))}/>
+        </label>
+        <button className="add-to-cart-btn" onClick={(event) => addToCartHandler(event, data.id, quantityToAdd)}>Add to Cart</button>
+      </form>
     </div>
   )
 }

@@ -20,14 +20,15 @@ function App() {
     return cart.reduce((count, item) => count + item.quantity, 0);
   }
 
-  function addToCart(itemID) {
+  function addToCart(event, itemID, quantity) {
+    event.preventDefault();
     const item = cart.find(itm => itm.id === itemID);
     if (item !== undefined) {
       setCart([
         ...cart.filter(itm => itm.id !== itemID),
         {
           id: itemID,
-          quantity: item.quantity + 1
+          quantity: item.quantity + quantity
         }
       ])
     } else {
@@ -35,7 +36,7 @@ function App() {
         ...cart,
         {
           id: itemID,
-          quantity: 1
+          quantity
         }
       ])
     }

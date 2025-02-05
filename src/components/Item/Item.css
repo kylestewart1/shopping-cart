@@ -12,7 +12,7 @@
   object-fit: contain;
 }
 
-.item > button {
+.add-to-cart-btn {
   color: rgb(207, 18, 18);
   font-weight: bold;
   background-color: rgb(255, 196, 0);
