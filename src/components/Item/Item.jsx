@@ -13,7 +13,10 @@ function Item({ data, addToCartHandler }) {
       <form>
         <label>
           Quantity:    
-          <input type="number" value={quantityToAdd} onChange={(e) => setQuantityToAdd(Number(e.target.value))}/>
+          <input type="number" 
+                 value={quantityToAdd}
+                 min={0}
+                 onChange={(e) => setQuantityToAdd(Number(e.target.value))}/>
         </label>
         <button className="add-to-cart-btn" onClick={(event) => addToCartHandler(event, data.id, quantityToAdd)}>Add to Cart</button>
       </form>

@@ -28,7 +28,8 @@ function App() {
         ...cart.filter(itm => itm.id !== itemID),
         {
           id: itemID,
-          quantity: item.quantity + quantity
+          quantity: item.quantity + quantity,
+          editing: false
         }
       ])
     } else {
@@ -36,7 +37,32 @@ function App() {
         ...cart,
         {
           id: itemID,
-          quantity
+          quantity: quantity,
+          editing: false
+        }
+      ])
+    }
+  }
+
+  function handleEditButton(itemID) {
+    const item = cart.find(itm => itm.id === itemID);
+    setCart([
+      ...cart.filter(itm => itm.id !== itemID),
+      {
+        ...item,
+        editing: !item.editing
+      }
+    ]);
+  }
+
+  function adjustItemQuantity(itemID, newQuantity) {
+    const item = cart.find(itm => itm.id === itemID);
+    if (item !== undefined) {
+      setCart([
+        ...cart.filter(itm => itm.id !== itemID),
+        {
+          ...item,
+          quantity: newQuantity
         }
       ])
     }
@@ -61,7 +87,9 @@ function App() {
         <Outlet context={{
           items: items,
           cart: cart,
-          addToCart: addToCart
+          addToCart: addToCart,
+          adjustItemQuantity: adjustItemQuantity,
+          handleEditButton: handleEditButton
           }}/>
       </div>
     </>
