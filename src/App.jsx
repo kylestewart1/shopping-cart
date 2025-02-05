@@ -64,10 +64,13 @@ function App() {
           ...item,
           quantity: newQuantity
         }
-      ])
+      ]);
     }
   }
 
+  function removeFromCart(itemID) {
+    setCart(cart.filter(item => item.id !== itemID));
+  }
   return (
     <>
       <nav>
@@ -89,7 +92,8 @@ function App() {
           cart: cart,
           addToCart: addToCart,
           adjustItemQuantity: adjustItemQuantity,
-          handleEditButton: handleEditButton
+          handleEditButton: handleEditButton,
+          removeFromCart: removeFromCart
           }}/>
       </div>
     </>

@@ -1,0 +1,17 @@
+.cart {
+  padding: 20px;
+}
+.cart > ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+
+.cart-item-image {
+  max-width: 100px;
+  max-height: 150px;
+  object-fit: contain;
+}
+
